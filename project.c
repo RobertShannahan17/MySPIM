@@ -62,30 +62,116 @@ void instruction_partition(unsigned instruction, unsigned *op, unsigned *r1,unsi
     *op = instruction >> 26;
 
     // Section r1     (next 5 bits)
-    *r1 = (instruction >> 21) & 0x7c0;
+    *r1 = (instruction >> 21) & 0x1F;
 
     // Section r2     (next 5 bits)
-    *r2 = (instruction >> 16) & 0xF800;
+    *r2 = (instruction >> 16) & 0x1F;
 
     // Section r3     (next 5 bits)
-    *r2 = (instruction >> 11) & 0x1F0000;
+    *r2 = (instruction >> 11) & 0x1F;
 
     // Section funct  (last 5 bits)
     *funct = instruction & 0x1F;
 
-    // Section offset (last 15 bits)
-    *offset = instruction & 0x7FFF;
+    // Section offset (last 16 bits)
+    *offset = instruction & 0x0000FFFF;
 
-    // Section jsec (last 25 bits)
-    *jsec = instruction & 0x1FFFFFF;
+    // Section jsec (last 26 bits)
+    *jsec = instruction & 0x03FFFFFF;
 }
 
 /* instruction decode */
 /* 15 Points */
 int instruction_decode(unsigned op,struct_controls *controls)
 {
-    // Switch for opcode, http://alumni.cs.ucr.edu/~vladimir/cs161/mips.html for table
-    // ALUOp uses its own switch, table on the PDF
+    /*
+    char RegDst;
+	char Jump;
+	char Branch;
+	char MemRead;
+	char MemtoReg;
+	char ALUOp;
+	char MemWrite;
+	char ALUSrc;
+	char RegWrite;
+	*/
+
+    // Switch for opcode
+    switch(op){
+        case 0:
+            //R-type
+            controls->RegDst = 1;
+            controls->Jump = 0;
+            controls->Branch = 0;
+            controls->MemRead = 0;
+            controls->MemtoReg = 0;
+            controls->ALUOp = 7; //ALU add
+            controls->MemWrite = 0;
+            controls->ALUSrc = 0;
+            controls->RegWrite = 1;
+            break;
+        case 8:
+            // Addi
+            controls->RegDst = ;
+            controls->Jump = ;
+            controls->Branch = ;
+            controls->MemRead = ;
+            controls->MemtoReg = ;
+            controls->ALUOp = ;
+            controls->MemWrite = ;
+            controls->ALUSrc = ;
+            controls->RegWrite = ;
+            break;
+        case 35:
+            // lw
+            controls->RegDst = 0;
+            controls->Jump = 0;
+            controls->Branch = 0;
+            controls->MemRead = 1;
+            controls->MemtoReg = 1;
+            controls->ALUOp = 0;
+            controls->MemWrite = 0;
+            controls->ALUSrc = 1;
+            controls->RegWrite = 1;
+            break;
+        case 43:
+            // sw
+            controls->RegDst = 2;
+            controls->Jump = 0;
+            controls->Branch = 0;
+            controls->MemRead = 0;
+            controls->MemtoReg = 2;
+            controls->ALUOp = 0;
+            controls->MemWrite = 1;
+            controls->ALUSrc = 1;
+            controls->RegWrite = 0;
+            break;
+        case 4:
+            // Beq
+            controls->RegDst = 2;
+            controls->Jump = 0;
+            controls->Branch = 1;
+            controls->MemRead = 0;
+            controls->MemtoReg = 2;
+            controls->ALUOp =  1;//TODO: Figure out ALUOp
+            controls->MemWrite = 0;
+            controls->ALUSrc = 0;
+            controls->RegWrite = 0;
+            break;
+        case 2:
+            // jump
+            controls->RegDst = 2;
+            controls->Jump = 1;
+            controls->Branch = 0;
+            controls->MemRead = 0;
+            controls->MemtoReg = 2;
+            controls->ALUOp = 0;
+            controls->MemWrite = 0;
+            controls->ALUSrc = 0;
+            controls->RegWrite = 0;
+            break;
+
+    }
 
     // Return 1 if invalid instruction, 0 otherwise
 }
