@@ -100,75 +100,75 @@ int instruction_decode(unsigned op,struct_controls *controls)
     switch(op){
         case 0:
             //R-type
-            controls->RegDst = 1;
-            controls->Jump = 0;
-            controls->Branch = 0;
-            controls->MemRead = 0;
-            controls->MemtoReg = 0;
-            controls->ALUOp = 7; //ALU add
-            controls->MemWrite = 0;
-            controls->ALUSrc = 0;
-            controls->RegWrite = 1;
+            controls->RegDst = '1';
+            controls->Jump = '0';
+            controls->Branch = '0';
+            controls->MemRead = '0';
+            controls->MemtoReg = '0';
+            controls->ALUOp = '7'; //ALU add
+            controls->MemWrite = '0';
+            controls->ALUSrc = '0';
+            controls->RegWrite = '1';
             break;
         case 8:
             // Addi
-            controls->RegDst = ;
-            controls->Jump = ;
-            controls->Branch = ;
-            controls->MemRead = ;
+            controls->RegDst = '0';
+            controls->Jump = '0';
+            controls->Branch = '0';
+            controls->MemRead = '0';
             controls->MemtoReg = ;
-            controls->ALUOp = ;
+            controls->ALUOp = '0';
             controls->MemWrite = ;
-            controls->ALUSrc = ;
+            controls->ALUSrc = '1';
             controls->RegWrite = ;
             break;
         case 35:
             // lw
-            controls->RegDst = 0;
-            controls->Jump = 0;
-            controls->Branch = 0;
-            controls->MemRead = 1;
-            controls->MemtoReg = 1;
-            controls->ALUOp = 0;
-            controls->MemWrite = 0;
-            controls->ALUSrc = 1;
-            controls->RegWrite = 1;
+            controls->RegDst = '0';
+            controls->Jump = '0';
+            controls->Branch = '0';
+            controls->MemRead = '1';
+            controls->MemtoReg = '1';
+            controls->ALUOp = '0';
+            controls->MemWrite = '0';
+            controls->ALUSrc = '1';
+            controls->RegWrite = '1';
             break;
         case 43:
             // sw
-            controls->RegDst = 2;
-            controls->Jump = 0;
-            controls->Branch = 0;
-            controls->MemRead = 0;
-            controls->MemtoReg = 2;
-            controls->ALUOp = 0;
-            controls->MemWrite = 1;
-            controls->ALUSrc = 1;
-            controls->RegWrite = 0;
+            controls->RegDst = '2';
+            controls->Jump = '0';
+            controls->Branch = '0';
+            controls->MemRead = '0';
+            controls->MemtoReg = '2';
+            controls->ALUOp = '0';
+            controls->MemWrite = '1';
+            controls->ALUSrc = '1';
+            controls->RegWrite = '0';
             break;
         case 4:
             // Beq
-            controls->RegDst = 2;
-            controls->Jump = 0;
-            controls->Branch = 1;
-            controls->MemRead = 0;
-            controls->MemtoReg = 2;
-            controls->ALUOp =  1;//TODO: Figure out ALUOp
-            controls->MemWrite = 0;
-            controls->ALUSrc = 0;
-            controls->RegWrite = 0;
+            controls->RegDst = '2';
+            controls->Jump = '0';
+            controls->Branch = '1';
+            controls->MemRead = '0';
+            controls->MemtoReg = '2';
+            controls->ALUOp =  '1';
+            controls->MemWrite = '0';
+            controls->ALUSrc = '0';
+            controls->RegWrite = '0';
             break;
         case 2:
             // jump
-            controls->RegDst = 2;
-            controls->Jump = 1;
-            controls->Branch = 0;
-            controls->MemRead = 0;
-            controls->MemtoReg = 2;
-            controls->ALUOp = 0;
-            controls->MemWrite = 0;
-            controls->ALUSrc = 0;
-            controls->RegWrite = 0;
+            controls->RegDst = '2';
+            controls->Jump = '1';
+            controls->Branch = '0';
+            controls->MemRead = '0';
+            controls->MemtoReg = '2';
+            controls->ALUOp = '0';
+            controls->MemWrite = '0';
+            controls->ALUSrc = '0';
+            controls->RegWrite = '0';
             break;
 
     }
