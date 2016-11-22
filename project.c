@@ -69,14 +69,19 @@ void sign_extend(unsigned offset,unsigned *extended_value)
 /* 10 Points */
 int ALU_operations(unsigned data1,unsigned data2,unsigned extended_value,unsigned funct,char ALUOp,char ALUSrc,unsigned *ALUresult,char *Zero)
 {
-
+    // switch function based on ALUOp and funct
+        // use data1 and (data2 if ALUSrc is 0 or extend_value if ALUSrc is 1) to do operations
+        // using ALU()
+    // Return 1 if invalid operation, 0 otherwise
 }
 
 /* Read / Write Memory */
 /* 10 Points */
 int rw_memory(unsigned ALUresult,unsigned data2,char MemWrite,char MemRead,unsigned *memdata,unsigned *Mem)
 {
-
+    // If MemWrite/MemRead is 2, do nothing
+    // If MemWrite is 1, store ALUResult in memdata
+    //
 }
 
 
