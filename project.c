@@ -42,11 +42,13 @@ void ALU(unsigned A,unsigned B,char ALUControl,unsigned *ALUresult,char *Zero)
 /* 10 Points */
 int instruction_fetch(unsigned PC,unsigned *Mem,unsigned *instruction)
 {
-    // Read hex in Mem[PC] to instruction
+    // Check if address is valid
+    if(PC % 4 == 0 && PC < 65536){
+        *instruction = Mem[PC >> 2];
+        return 0;
+    }
 
-    // Check if hex is valid
-
-    // Return 1 if invalid instruction, 0 otherwise
+    return 1;
 }
 
 
@@ -57,15 +59,25 @@ void instruction_partition(unsigned instruction, unsigned *op, unsigned *r1,unsi
     // Convert hex into binary
 
     // Section opcode (first 6 bits)
+    *op = instruction >> 26;
 
     // Section r1     (next 5 bits)
+    *r1 = (instruction >> 21) & 0x7c0;
+
     // Section r2     (next 5 bits)
+    *r2 = (instruction >> 16) & 0xF800;
+
     // Section r3     (next 5 bits)
+    *r2 = (instruction >> 11) & 0x1F0000;
+
     // Section funct  (last 5 bits)
+    *funct = instruction & 0x1F;
 
     // Section offset (last 15 bits)
+    *offset = instruction & 0x7FFF;
 
     // Section jsec (last 25 bits)
+    *jsec = instruction & 0x1FFFFFF;
 }
 
 /* instruction decode */
@@ -83,7 +95,9 @@ int instruction_decode(unsigned op,struct_controls *controls)
 void read_register(unsigned r1,unsigned r2,unsigned *Reg,unsigned *data1,unsigned *data2)
 {
     // set data1 to Reg[r1]
+    *data1 = Reg[r1];
     // set data2 to Reg[r2]
+    *data2 = Reg[r2];
 }
 
 
