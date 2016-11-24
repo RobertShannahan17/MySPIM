@@ -191,6 +191,10 @@ void read_register(unsigned r1,unsigned r2,unsigned *Reg,unsigned *data1,unsigne
 /* 10 Points */
 void sign_extend(unsigned offset,unsigned *extended_value)
 {
+	Char Extended[50];
+	Strcpy(Extended, *extended_value);
+	Strcat(*offset,Extended);
+	Strcpy(*extended_value, *offset);
     // copy left most bit to all bits on the left
     // store in extended value
 }
